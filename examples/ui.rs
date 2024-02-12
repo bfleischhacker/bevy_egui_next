@@ -1,5 +1,5 @@
 use bevy::{prelude::*, window::PrimaryWindow};
-use bevy_egui::{egui, EguiContexts, EguiPlugin, EguiSettings};
+use bevy_egui_next::{egui, EguiContexts, EguiPlugin, EguiSettings};
 
 struct Images {
     bevy_icon: Handle<Image>,
@@ -16,7 +16,7 @@ impl FromWorld for Images {
     }
 }
 
-/// This example demonstrates the following functionality and use-cases of bevy_egui:
+/// This example demonstrates the following functionality and use-cases of bevy_egui_next:
 /// - rendering loaded assets;
 /// - toggling hidpi scaling (by pressing '/' button);
 /// - configuring egui contexts during the startup.
@@ -78,7 +78,7 @@ fn ui_example_system(
     mut ui_state: ResMut<UiState>,
     // You are not required to store Egui texture ids in systems. We store this one here just to
     // demonstrate that rendering by using a texture id of a removed image is handled without
-    // making bevy_egui panic.
+    // making bevy_egui_next panic.
     mut rendered_texture_id: Local<egui::TextureId>,
     mut is_initialized: Local<bool>,
     // If you need to access the ids from multiple systems, you can also initialize the `Images`
@@ -166,7 +166,7 @@ fn ui_example_system(
         ui.heading("Egui Template");
         ui.hyperlink("https://github.com/emilk/egui_template");
         ui.add(egui::github_link_file_line!(
-            "https://github.com/mvlabat/bevy_egui/blob/main/",
+            "https://github.com/mvlabat/bevy_egui_next/blob/main/",
             "Direct link to source code."
         ));
         egui::warn_if_debug_build(ui);

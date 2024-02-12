@@ -9,7 +9,7 @@ use bevy::{
         view::RenderLayers,
     },
 };
-use bevy_egui::{egui, EguiContexts, EguiPlugin, EguiUserTextures};
+use bevy_egui_next::{egui, EguiContexts, EguiPlugin, EguiUserTextures};
 use egui::Widget;
 
 fn main() {

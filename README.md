@@ -1,22 +1,27 @@
+# Bevy_egui_next
+
+This is a mvlabat/bevy_egui fork with the intention ok keeping an up to date version for the community to use during the time mvlabat is less available due to the russian invasion of Ukraine.
+
+## Original Author's Message
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://stand-with-ukraine.pp.ua)
 
 **Hey!** I'm the author of the crate, and I was born in Mariupol, Ukraine. When russians started the war in 2014, I moved to Kyiv. My parents, who had been staying in Mariupol till the start of the full-scale invasion, barely escaped the city alive. By the moment of writing (November 5th, 2023), we had [874 air raid alerts in Kyiv, and russians managed to bomb the city 132 times](https://air-alarms.in.ua/en/region/kyiv).
 
 **If you are using this crate, please consider donating to any of the listed funds (see the banner above), that will mean a lot to me.**
 
-# `bevy_egui`
+# `bevy_egui_next`
 
-[![Crates.io](https://img.shields.io/crates/v/bevy_egui.svg)](https://crates.io/crates/bevy_egui)
-[![Documentation](https://docs.rs/bevy_egui/badge.svg)](https://docs.rs/bevy_egui)
+[![Crates.io](https://img.shields.io/crates/v/bevy_egui_next.svg)](https://crates.io/crates/bevy_egui_next)
+[![Documentation](https://docs.rs/bevy_egui_next/badge.svg)](https://docs.rs/bevy_egui_next)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bevyengine/bevy/blob/master/LICENSE)
-[![Downloads](https://img.shields.io/crates/d/bevy_egui.svg)](https://crates.io/crates/bevy_egui)
-[![Rust](https://github.com/mvlabat/bevy_egui/workflows/CI/badge.svg)](https://github.com/mvlabat/bevy_egui/actions)
+[![Downloads](https://img.shields.io/crates/d/bevy_egui_next.svg)](https://crates.io/crates/bevy_egui_next)
+[![Rust](https://github.com/mvlabat/bevy_egui_next/workflows/CI/badge.svg)](https://github.com/mvlabat/bevy_egui_next/actions)
 
 This crate provides an [Egui](https://github.com/emilk/egui) integration for the [Bevy](https://github.com/bevyengine/bevy) game engine.
 
 **Trying out:**
 
-An example WASM project is live at [mvlabat.github.io/bevy_egui_web_showcase](https://mvlabat.github.io/bevy_egui_web_showcase/index.html) [[source](https://github.com/mvlabat/bevy_egui_web_showcase)].
+An example WASM project is live at [mvlabat.github.io/bevy_egui_next_web_showcase](https://mvlabat.github.io/bevy_egui_next_web_showcase/index.html) [[source](https://github.com/mvlabat/bevy_egui_next_web_showcase)].
 
 **Features:**
 - Desktop and web platforms support
@@ -24,10 +29,10 @@ An example WASM project is live at [mvlabat.github.io/bevy_egui_web_showcase](ht
 - Opening URLs
 - Multiple windows support (see [./examples/two_windows.rs](https://github.com/mvlabat/bevy_egui/blob/v0.20.1/examples/two_windows.rs))
 
-`bevy_egui` can be compiled with using only `bevy` and `egui` as dependencies: `manage_clipboard` and `open_url` features,
+`bevy_egui_next` can be compiled with using only `bevy` and `egui` as dependencies: `manage_clipboard` and `open_url` features,
 that require additional crates, can be disabled.
 
-![bevy_egui](bevy_egui.png)
+![bevy_egui_next](bevy_egui.png)
 
 ## Dependencies
 
@@ -44,12 +49,12 @@ Here's a minimal usage example:
 # Cargo.toml
 [dependencies]
 bevy = "0.12"
-bevy_egui = "0.24"
+bevy_egui_next = "0.25"
 ```
 
 ```rust
 use bevy::prelude::*;
-use bevy_egui::{egui, EguiContexts, EguiPlugin};
+use bevy_egui_next::{egui, EguiContexts, EguiPlugin};
 
 fn main() {
     App::new()
@@ -69,7 +74,7 @@ fn ui_example_system(mut contexts: EguiContexts) {
 
 ```
 
-For a more advanced example, see [examples/ui.rs](https://github.com/mvlabat/bevy_egui/blob/v0.20.1/examples/ui.rs).
+For a more advanced example, see [examples/ui.rs](https://github.com/mvlabat/bevy_egui_next/blob/v0.20.1/examples/ui.rs).
 
 ```bash
 cargo run --example ui
@@ -81,11 +86,11 @@ cargo run --example ui
 
 ## Bevy support table
 
-**Note:** if you're looking for a `bevy_egui` version that supports `main` branch of Bevy, check out [open PRs](https://github.com/mvlabat/bevy_egui/pulls), there's a great chance we've already started working on the future Bevy release support.
+**Note:** if you're looking for a `bevy_egui_next` version that supports `main` branch of Bevy, check out [open PRs](https://github.com/mvlabat/bevy_egui_next/pulls), there's a great chance we've already started working on the future Bevy release support.
 
-| bevy | bevy_egui |
+| bevy | bevy_egui_next |
 |------|-----------|
-| 0.12 | 0.23-0.24 |
+| 0.12 | 0.23-0.25 |
 | 0.11 | 0.21-0.22 |
 | 0.10 | 0.20      |
 | 0.9  | 0.17-0.19 |

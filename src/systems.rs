@@ -200,7 +200,7 @@ pub fn process_input_system(
 
             for event in input_events.ev_mouse_wheel.read() {
                 let mut delta = egui::vec2(event.x, event.y);
-                if let MouseScrollUnit::Line = event.unit {
+                if MouseScrollUnit::Line == event.unit {
                     // https://github.com/emilk/egui/blob/a689b623a669d54ea85708a8c748eb07e23754b0/egui-winit/src/lib.rs#L449
                     delta *= 50.0;
                 }
@@ -485,7 +485,7 @@ pub fn process_output_system(
     }
 }
 
-fn egui_to_winit_cursor_icon(cursor_icon: egui::CursorIcon) -> Option<bevy::window::CursorIcon> {
+const fn egui_to_winit_cursor_icon(cursor_icon: egui::CursorIcon) -> Option<bevy::window::CursorIcon> {
     match cursor_icon {
         egui::CursorIcon::Default => Some(bevy::window::CursorIcon::Default),
         egui::CursorIcon::PointingHand => Some(bevy::window::CursorIcon::Hand),
@@ -525,7 +525,7 @@ fn egui_to_winit_cursor_icon(cursor_icon: egui::CursorIcon) -> Option<bevy::wind
     }
 }
 
-fn bevy_to_egui_key(key_code: KeyCode) -> Option<egui::Key> {
+const fn bevy_to_egui_key(key_code: KeyCode) -> Option<egui::Key> {
     let key = match key_code {
         KeyCode::Down => egui::Key::ArrowDown,
         KeyCode::Left => egui::Key::ArrowLeft,

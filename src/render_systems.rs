@@ -115,7 +115,7 @@ pub struct EguiTransform {
 impl EguiTransform {
     /// Calculates the transform from window size and scale factor.
     pub fn from_window_size(window_size: WindowSize, scale_factor: f32) -> Self {
-        EguiTransform {
+        Self {
             scale: Vec2::new(
                 2.0 / (window_size.width() / scale_factor),
                 -2.0 / (window_size.height() / scale_factor),
