@@ -1,6 +1,6 @@
 # Bevy_egui_next
 
-This is a mvlabat/bevy_egui fork with the intention ok keeping an up to date version for the community to use during the time mvlabat is less available due to the russian invasion of Ukraine.
+This is a mvlabat/bevy_egui fork with the intention of keeping an up to date version for the community to use during the time mvlabat is less available due to the russian invasion of Ukraine.
 
 ## Original Author's Message
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://stand-with-ukraine.pp.ua)
