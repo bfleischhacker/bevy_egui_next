@@ -485,7 +485,9 @@ pub fn process_output_system(
     }
 }
 
-const fn egui_to_winit_cursor_icon(cursor_icon: egui::CursorIcon) -> Option<bevy::window::CursorIcon> {
+const fn egui_to_winit_cursor_icon(
+    cursor_icon: egui::CursorIcon,
+) -> Option<bevy::window::CursorIcon> {
     match cursor_icon {
         egui::CursorIcon::Default => Some(bevy::window::CursorIcon::Default),
         egui::CursorIcon::PointingHand => Some(bevy::window::CursorIcon::Hand),

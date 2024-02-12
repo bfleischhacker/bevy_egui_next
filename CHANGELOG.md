@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.26.0] - 11-02-2024
+
+### Changed
+
+- Update Egui to 0.26 ([#3](https://github.com/naomijub/bevy_egui_next/pull/3) by @naomijub).
+
 ## [0.25.0] - 11-Dec-2023
 
 ### Changed
