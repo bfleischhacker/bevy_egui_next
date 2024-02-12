@@ -15,7 +15,7 @@ This is a mvlabat/bevy_egui fork with the intention ok keeping an up to date ver
 [![Documentation](https://docs.rs/bevy_egui_next/badge.svg)](https://docs.rs/bevy_egui_next)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bevyengine/bevy/blob/master/LICENSE)
 [![Downloads](https://img.shields.io/crates/d/bevy_egui_next.svg)](https://crates.io/crates/bevy_egui_next)
-[![Rust](https://github.com/mvlabat/bevy_egui_next/workflows/CI/badge.svg)](https://github.com/mvlabat/bevy_egui_next/actions)
+[![Rust](https://github.com/naomijub/bevy_egui_next/workflows/CI/badge.svg)](https://github.com/naomijub/bevy_egui_next/actions)
 
 This crate provides an [Egui](https://github.com/emilk/egui) integration for the [Bevy](https://github.com/bevyengine/bevy) game engine.
 
