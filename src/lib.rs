@@ -4,15 +4,15 @@
 //!
 //! **Trying out:**
 //!
-//! An example WASM project is live at [mvlabat.github.io/bevy_egui_web_showcase](https://mvlabat.github.io/bevy_egui_web_showcase/index.html) [[source](https://github.com/mvlabat/bevy_egui_web_showcase)].
+//! An example WASM project is live at [mvlabat.github.io/bevy_egui_next_web_showcase](https://mvlabat.github.io/bevy_egui_next_web_showcase/index.html) [[source](https://github.com/mvlabat/bevy_egui_next_web_showcase)].
 //!
 //! **Features:**
 //! - Desktop and web platforms support
 //! - Clipboard (web support is limited to the same window, see [rust-windowing/winit#1829](https://github.com/rust-windowing/winit/issues/1829))
 //! - Opening URLs
-//! - Multiple windows support (see [./examples/two_windows.rs](https://github.com/mvlabat/bevy_egui/blob/v0.20.1/examples/two_windows.rs))
+//! - Multiple windows support (see [./examples/two_windows.rs](https://github.com/mvlabat/bevy_egui_next/blob/v0.20.1/examples/two_windows.rs))
 //!
-//! `bevy_egui` can be compiled with using only `bevy` and `egui` as dependencies: `manage_clipboard` and `open_url` features,
+//! `bevy_egui_next` can be compiled with using only `bevy` and `egui` as dependencies: `manage_clipboard` and `open_url` features,
 //! that require additional crates, can be disabled.
 //!
 //! ## Usage
@@ -21,7 +21,7 @@
 //!
 //! ```no_run,rust
 //! use bevy::prelude::*;
-//! use bevy_egui::{egui, EguiContexts, EguiPlugin};
+//! use bevy_egui_next::{egui, EguiContexts, EguiPlugin};
 //!
 //! fn main() {
 //!     App::new()
@@ -40,7 +40,7 @@
 //! }
 //! ```
 //!
-//! For a more advanced example, see [examples/ui.rs](https://github.com/mvlabat/bevy_egui/blob/v0.20.1/examples/ui.rs).
+//! For a more advanced example, see [examples/ui.rs](https://github.com/mvlabat/bevy_egui_next/blob/v0.20.1/examples/ui.rs).
 //!
 //! ```bash
 //! cargo run --example ui
@@ -132,7 +132,7 @@ pub struct EguiSettings {
     /// This setting can be used to force the UI to render in physical pixels regardless of DPI as follows:
     /// ```rust
     /// use bevy::{prelude::*, window::PrimaryWindow};
-    /// use bevy_egui::EguiSettings;
+    /// use bevy_egui_next::EguiSettings;
     ///
     /// fn update_ui_scale_factor(mut egui_settings: ResMut<EguiSettings>, windows: Query<&Window, With<PrimaryWindow>>) {
     ///     if let Ok(window) = windows.get_single() {
@@ -308,7 +308,7 @@ pub struct EguiOutput {
     pub platform_output: egui::PlatformOutput,
 }
 
-/// A component for storing `bevy_egui` context.
+/// A component for storing `bevy_egui_next` context.
 #[derive(Clone, Component, Default)]
 #[cfg_attr(feature = "render", derive(ExtractComponent))]
 pub struct EguiContext(egui::Context);
@@ -504,11 +504,11 @@ impl<'w, 's> EguiContexts<'w, 's> {
     }
 }
 
-/// A resource for storing `bevy_egui` mouse position.
+/// A resource for storing `bevy_egui_next` mouse position.
 #[derive(Resource, Component, Default, Deref, DerefMut)]
 pub struct EguiMousePosition(pub Option<(Entity, egui::Vec2)>);
 
-/// A resource for storing `bevy_egui` user textures.
+/// A resource for storing `bevy_egui_next` user textures.
 #[derive(Clone, Resource, Default, ExtractResource)]
 #[cfg(feature = "render")]
 pub struct EguiUserTextures {
@@ -564,7 +564,7 @@ pub struct WindowSize {
 }
 
 impl WindowSize {
-    fn new(physical_width: f32, physical_height: f32, scale_factor: f32) -> Self {
+    const fn new(physical_width: f32, physical_height: f32, scale_factor: f32) -> Self {
         Self {
             physical_width,
             physical_height,
@@ -585,20 +585,20 @@ impl WindowSize {
     }
 }
 
-/// The names of `bevy_egui` nodes.
+/// The names of `bevy_egui_next` nodes.
 pub mod node {
     /// The main egui pass.
     pub const EGUI_PASS: &str = "egui_pass";
 }
 
 #[derive(SystemSet, Clone, Hash, Debug, Eq, PartialEq)]
-/// The `bevy_egui` plugin startup system sets.
+/// The `bevy_egui_next` plugin startup system sets.
 pub enum EguiStartupSet {
     /// Initializes Egui contexts for available windows.
     InitContexts,
 }
 
-/// The `bevy_egui` plugin system sets.
+/// The `bevy_egui_next` plugin system sets.
 #[derive(SystemSet, Clone, Hash, Debug, Eq, PartialEq)]
 pub enum EguiSet {
     /// Initializes Egui contexts for newly created windows.
@@ -764,7 +764,7 @@ pub struct EguiManagedTexture {
     pub color_image: egui::ColorImage,
 }
 
-/// Adds bevy_egui components to newly created windows.
+/// Adds bevy_egui_next components to newly created windows.
 pub fn setup_new_windows_system(
     mut commands: Commands,
     new_windows: Query<Entity, (Added<Window>, Without<EguiContext>)>,

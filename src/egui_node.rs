@@ -80,7 +80,7 @@ impl FromWorld for EguiPipeline {
                 ],
             });
 
-        EguiPipeline {
+        Self {
             transform_bind_group_layout,
             texture_bind_group_layout,
         }
@@ -172,7 +172,7 @@ pub struct EguiNode {
 impl EguiNode {
     /// Constructs Egui render node.
     pub fn new(window_entity: Entity) -> Self {
-        EguiNode {
+        Self {
             window_entity,
             draw_commands: Vec::new(),
             vertex_data: Vec::new(),

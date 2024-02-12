@@ -3,7 +3,7 @@ use bevy::{
     render::camera::RenderTarget,
     window::{PresentMode, PrimaryWindow, WindowRef, WindowResolution},
 };
-use bevy_egui::{EguiContext, EguiPlugin, EguiUserTextures};
+use bevy_egui_next::{EguiContext, EguiPlugin, EguiUserTextures};
 
 #[derive(Resource)]
 struct Images {
