@@ -96,7 +96,7 @@ use bevy::{
 use bevy::{
     app::{App, Plugin, PostUpdate, PreStartup, PreUpdate},
     ecs::{
-        query::{QueryEntityError, WorldQuery},
+        query::QueryEntityError,
         schedule::apply_deferred,
         system::SystemParam,
     },
@@ -114,6 +114,7 @@ use std::borrow::Cow;
     not(any(target_arch = "wasm32", target_os = "android"))
 ))]
 use std::cell::{RefCell, RefMut};
+use bevy::ecs::query::QueryData;
 #[cfg(all(
     feature = "manage_clipboard",
     not(any(target_arch = "wasm32", target_os = "android"))
@@ -132,11 +133,12 @@ pub struct EguiSettings {
     /// This setting can be used to force the UI to render in physical pixels regardless of DPI as follows:
     /// ```rust
     /// use bevy::{prelude::*, window::PrimaryWindow};
+    /// use egui::emath::Numeric;
     /// use bevy_egui_next::EguiSettings;
     ///
     /// fn update_ui_scale_factor(mut egui_settings: ResMut<EguiSettings>, windows: Query<&Window, With<PrimaryWindow>>) {
     ///     if let Ok(window) = windows.get_single() {
-    ///         egui_settings.scale_factor = 1.0 / window.scale_factor();
+    ///         egui_settings.scale_factor = 1.0 / window.scale_factor().to_f64();
     ///     }
     /// }
     /// ```
@@ -731,8 +733,8 @@ impl Plugin for EguiPlugin {
 }
 
 /// Queries all the Egui related components.
-#[derive(WorldQuery)]
-#[world_query(mutable)]
+#[derive(QueryData)]
+#[query_data(mutable)]
 pub struct EguiContextQuery {
     /// Window entity.
     pub window_entity: Entity,
@@ -904,6 +906,7 @@ mod tests {
                                 ..Default::default()
                             },
                         ),
+                        synchronous_pipeline_compilation: false
                     })
                     .build()
                     .disable::<WinitPlugin>(),

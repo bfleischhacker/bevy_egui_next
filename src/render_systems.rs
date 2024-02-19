@@ -20,6 +20,8 @@ use bevy::{
     },
     utils::HashMap,
 };
+use bevy::render::graph::CameraDriverLabel;
+use bevy::render::render_graph::RenderLabel;
 
 /// Extracted Egui settings.
 #[derive(Resource, Deref, DerefMut, Default)]
@@ -72,22 +74,20 @@ impl ExtractedEguiTextures<'_> {
     }
 }
 
+#[derive(Debug, Hash, PartialEq, Eq, Clone, RenderLabel)]
+pub struct EguiPass;
+
 /// Sets up the pipeline for newly created windows.
 pub fn setup_new_windows_render_system(
     windows: Extract<Query<Entity, Added<Window>>>,
     mut render_graph: ResMut<RenderGraph>,
 ) {
     for window in windows.iter() {
-        let egui_pass = format!("egui-{}-{}", window.index(), window.generation());
-
         let new_node = EguiNode::new(window);
 
-        render_graph.add_node(egui_pass.clone(), new_node);
+        render_graph.add_node(EguiPass, new_node);
 
-        render_graph.add_node_edge(
-            bevy::render::main_graph::node::CAMERA_DRIVER,
-            egui_pass.to_string(),
-        );
+        render_graph.add_node_edge(CameraDriverLabel, EguiPass);
     }
 }
 
@@ -140,7 +140,7 @@ pub fn prepare_egui_transforms_system(
     egui_transforms.offsets.clear();
 
     for (window, size) in window_sizes.iter() {
-        let offset = egui_transforms.buffer.push(EguiTransform::from_window_size(
+        let offset = egui_transforms.buffer.push(&EguiTransform::from_window_size(
             *size,
             egui_settings.scale_factor as f32,
         ));
