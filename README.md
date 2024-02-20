@@ -88,14 +88,15 @@ cargo run --example ui
 
 **Note:** if you're looking for a `bevy_egui_next` version that supports `main` branch of Bevy, check out [open PRs](https://github.com/mvlabat/bevy_egui_next/pulls), there's a great chance we've already started working on the future Bevy release support.
 
-| bevy | bevy_egui_next |
-|------|-----------|
-| 0.12 | 0.23-0.26 |
-| 0.11 | 0.21-0.22 |
-| 0.10 | 0.20      |
-| 0.9  | 0.17-0.19 |
-| 0.8  | 0.15-0.16 |
-| 0.7  | 0.13-0.14 |
-| 0.6  | 0.10-0.12 |
-| 0.5  | 0.4-0.9   |
-| 0.4  | 0.1-0.3   |
+| bevy  | bevy_egui_next |
+|-------|----------------|
+| 0.13  | 0.27.0         |
+| 0.12  | 0.23-0.26      |
+| 0.11  | 0.21-0.22      |
+| 0.10  | 0.20           |
+| 0.9   | 0.17-0.19      |
+| 0.8   | 0.15-0.16      |
+| 0.7   | 0.13-0.14      |
+| 0.6   | 0.10-0.12      |
+| 0.5   | 0.4-0.9        |
+| 0.4   | 0.1-0.3        |
