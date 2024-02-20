@@ -75,7 +75,7 @@ impl ExtractedEguiTextures<'_> {
 }
 
 #[derive(Debug, Hash, PartialEq, Eq, Clone, RenderLabel)]
-pub struct EguiPass;
+pub struct EguiPass(String);
 
 /// Sets up the pipeline for newly created windows.
 pub fn setup_new_windows_render_system(
@@ -84,10 +84,12 @@ pub fn setup_new_windows_render_system(
 ) {
     for window in windows.iter() {
         let new_node = EguiNode::new(window);
+        let label_name = format!("egui-{}-{}", window.index(), window.generation());
+        let label = EguiPass(label_name);
 
-        render_graph.add_node(EguiPass, new_node);
+        render_graph.add_node(label.intern(), new_node);
 
-        render_graph.add_node_edge(CameraDriverLabel, EguiPass);
+        render_graph.add_node_edge(CameraDriverLabel, label.intern());
     }
 }
 
