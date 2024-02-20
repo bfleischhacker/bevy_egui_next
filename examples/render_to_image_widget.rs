@@ -1,5 +1,5 @@
 use bevy::{
-    core_pipeline::clear_color::ClearColorConfig,
+    // core_pipeline::clear_color::ClearColorConfig,
     prelude::*,
     render::{
         camera::RenderTarget,
@@ -9,6 +9,7 @@ use bevy::{
         view::RenderLayers,
     },
 };
+use bevy::core_pipeline::core_3d::Camera3dDepthLoadOp;
 use bevy_egui_next::{egui, EguiContexts, EguiPlugin, EguiUserTextures};
 use egui::Widget;
 
@@ -103,7 +104,7 @@ fn setup(
     commands
         .spawn(Camera3dBundle {
             camera_3d: Camera3d {
-                clear_color: ClearColorConfig::Custom(Color::rgba(1.0, 1.0, 1.0, 0.0)),
+                depth_load_op: Camera3dDepthLoadOp::Clear(0.0),
                 ..default()
             },
             camera: Camera {
@@ -210,13 +211,12 @@ fn color_picker_widget(ui: &mut egui::Ui, color: &mut Color) -> egui::Response {
         egui::color_picker::Alpha::Opaque,
     );
     let [r, g, b, a] = egui_color.to_srgba_unmultiplied();
-    *color = [
+    *color = Color::rgba(
         r as f32 / 255.0,
         g as f32 / 255.0,
         b as f32 / 255.0,
         a as f32 / 255.0,
-    ]
-    .into();
+    );
     res
 }
 

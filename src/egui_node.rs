@@ -25,6 +25,8 @@ use bevy::{
         view::ExtractedWindows,
     },
 };
+use bevy::render::render_asset::RenderAssetUsages;
+use bevy::render::render_resource::StoreOp;
 
 /// Egui shader.
 pub const EGUI_SHADER_HANDLE: Handle<Shader> = Handle::weak_from_u128(9898276442290979394);
@@ -43,9 +45,9 @@ impl FromWorld for EguiPipeline {
         let render_device = render_world.get_resource::<RenderDevice>().unwrap();
 
         let transform_bind_group_layout =
-            render_device.create_bind_group_layout(&BindGroupLayoutDescriptor {
-                label: Some("egui transform bind group layout"),
-                entries: &[BindGroupLayoutEntry {
+            render_device.create_bind_group_layout(
+                Some("egui transform bind group layout"),
+                &[BindGroupLayoutEntry {
                     binding: 0,
                     visibility: ShaderStages::VERTEX,
                     ty: BindingType::Buffer {
@@ -55,12 +57,12 @@ impl FromWorld for EguiPipeline {
                     },
                     count: None,
                 }],
-            });
+            );
 
         let texture_bind_group_layout =
-            render_device.create_bind_group_layout(&BindGroupLayoutDescriptor {
-                label: Some("egui texture bind group layout"),
-                entries: &[
+            render_device.create_bind_group_layout(
+                Some("egui texture bind group layout"),
+                &[
                     BindGroupLayoutEntry {
                         binding: 0,
                         visibility: ShaderStages::FRAGMENT,
@@ -78,7 +80,7 @@ impl FromWorld for EguiPipeline {
                         count: None,
                     },
                 ],
-            });
+            );
 
         Self {
             transform_bind_group_layout,
@@ -190,9 +192,9 @@ impl Node for EguiNode {
         let mut window_sizes = world.query::<(&WindowSize, &mut EguiRenderOutput)>();
 
         let Ok((window_size, mut render_output)) = window_sizes.get_mut(world, self.window_entity)
-        else {
-            return;
-        };
+            else {
+                return;
+            };
         let window_size = *window_size;
         let paint_jobs = std::mem::take(&mut render_output.paint_jobs);
 
@@ -345,10 +347,12 @@ impl Node for EguiNode {
                         resolve_target: None,
                         ops: Operations {
                             load: LoadOp::Load,
-                            store: true,
+                            store: StoreOp::Store,
                         },
                     })],
                     depth_stencil_attachment: None,
+                    timestamp_writes: None,
+                    occlusion_query_set: None,
                 });
 
         let Some(pipeline_id) = egui_pipelines.get(&extracted_window.entity) else {
@@ -450,6 +454,7 @@ pub(crate) fn color_image_as_bevy_image(
             TextureDimension::D2,
             pixels,
             TextureFormat::Rgba8UnormSrgb,
+            RenderAssetUsages::all()
         )
     }
 }
